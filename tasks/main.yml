@@ -1,2 +1,47 @@
 ---
-# tasks file for skeleton
+# tasks file for cyhy_feeds
+
+#
+# Grab the cyhy-reports code
+#
+- name: Create the /var/local/cyhy/feeds directory
+  file:
+    path: /var/local/cyhy/feeds
+    state: directory
+
+- name: Download and untar the cyhy-feeds tarball
+  unarchive:
+    src: "https://api.github.com/repos/cisagov/cyhy-feeds/tarball/develop"
+    dest: /var/local/cyhy/feeds
+    remote_src: yes
+    extra_opts:
+      - "--strip-components=1"
+
+- name: Create the /var/cyhy/scripts/cyhy-feeds/cyhy_extracts directory
+  file:
+    path: /var/cyhy/scripts/cyhy-feeds/cyhy_extracts
+    state: directory
+
+- name: Copy the extract scripts
+  copy:
+    src: "/var/local/cyhy/feeds/aws_jobs/{{ item }}"
+    dest: "/var/cyhy/scripts/cyhy-feeds/{{ item }}"
+    mode: 0755
+    remote_src: yes
+  loop:
+    - cyhy-data-extract.py
+    - dmarc.py
+
+- name: Install dependencies required by the extract scripts
+  package:
+    name:
+      - gnupg2
+      - unzip
+
+- name: Install pip dependencies required by the extract scripts
+  pip:
+    name:
+      - boto3
+      - python-gnupg
+      - requests
+      - requests_aws4auth
