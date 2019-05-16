@@ -10,8 +10,26 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts("all")
 
 
+@pytest.mark.parametrize("pkg", ["gnupg2", "unzip"])
+def test_packages(host, pkg):
+    """Test that the appropriate packages were installed."""
+    assert host.package(pkg).is_installed
+
+
+@pytest.mark.parametrize("pkg", ["boto3", "python-gnupg", "requests", "requests_aws4auth"])
+def test_pip_packages(host, pkg):
+    """Test that the pip packages were installed."""
+    assert pkg in host.pip_package.get_packages()
+
+
 @pytest.mark.parametrize(
-    "f", ["/var/cyhy/scripts", "/var/cyhy/scripts/cyhy_archive.sh"]
+    "f",
+    [
+        "/var/local/cyhy/feeds",
+        "/var/cyhy/scripts/cyhy-feeds/cyhy_extracts",
+        "/var/cyhy/scripts/cyhy-feeds/cyhy-data-extract.py",
+        "/var/cyhy/scripts/cyhy-feeds/dmarc.py",
+    ],
 )
 def test_files(host, f):
     """Test that the expected files and directories are present."""
