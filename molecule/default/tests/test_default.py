@@ -16,7 +16,7 @@ def test_packages(host, pkg):
     assert host.package(pkg).is_installed
 
 
-@pytest.mark.parametrize("pkg", ["boto3", "python-gnupg", "requests", "requests_aws4auth"])
+@pytest.mark.parametrize("pkg", ["boto3", "python-gnupg", "requests", "requests-aws4auth"])
 def test_pip_packages(host, pkg):
     """Test that the pip packages were installed."""
     assert pkg in host.pip_package.get_packages()

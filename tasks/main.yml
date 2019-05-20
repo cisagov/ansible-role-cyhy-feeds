@@ -44,4 +44,4 @@
       - boto3
       - python-gnupg
       - requests
-      - requests_aws4auth
+      - requests-aws4auth
