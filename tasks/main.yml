@@ -43,5 +43,5 @@
     name:
       - boto3
       - python-gnupg
-      - requests
+      - requests==2.21.0
       - requests-aws4auth
