@@ -45,4 +45,4 @@
       - python-gnupg
       - requests==2.21.0
       - requests-aws4auth
-      - git+https://github.com/cisagov/mongo-db-from-config
+      - https://github.com/cisagov/mongo-db-from-config/tarball/develop
