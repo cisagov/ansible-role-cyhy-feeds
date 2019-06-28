@@ -48,7 +48,8 @@
       - https://github.com/cisagov/mongo-db-from-config/tarball/develop
 
 - name: Install pip3 dependencies required by the extract scripts
-  pip-3.5:
+  pip:
+    executable: pip-3.5
     name:
       - boto3
       - python-gnupg
