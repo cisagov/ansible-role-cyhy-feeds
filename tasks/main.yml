@@ -42,6 +42,7 @@
   pip:
     name:
       - boto3
+      - docopt
       - python-gnupg
       - requests==2.21.0
       - requests-aws4auth
@@ -52,6 +53,7 @@
     executable: pip3
     name:
       - boto3
+      - docopt
       - python-gnupg
       - requests==2.21.0
       - requests-aws4auth
