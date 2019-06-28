@@ -43,6 +43,7 @@
     name:
       - boto3
       - docopt
+      - netaddr
       - python-gnupg
       - requests==2.21.0
       - requests-aws4auth
@@ -54,6 +55,7 @@
     name:
       - boto3
       - docopt
+      - netaddr
       - python-gnupg
       - requests==2.21.0
       - requests-aws4auth
