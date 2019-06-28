@@ -41,21 +41,24 @@
 - name: Install pip dependencies required by the extract scripts
   pip:
     name:
-      - boto3
-      - docopt
-      - netaddr
-      - python-gnupg
-      - pytz
-      - requests==2.21.0
-      - requests-aws4auth
+      # - boto3
+      # - docopt
+      # - netaddr
+      # - python-gnupg
+      # - pytz
+      # - requests==2.21.0
+      # - requests-aws4auth
       - https://github.com/cisagov/mongo-db-from-config/tarball/develop
+
+- name: Install pip dependencies required by the extract scripts
+  pip:
+    chdir: /var/local/cyhy/feeds
+    requirements: requirements.txt
 
 - name: Install pip3 dependencies required by the extract scripts
   pip:
     executable: pip3
-    chdir: /var/local/cyhy/feeds
-    requirements: requirements.txt
-    # name:
+    name:
     #   - boto3
     #   - docopt
     #   - netaddr
@@ -63,4 +66,10 @@
     #   - pytz
     #   - requests==2.21.0
     #   - requests-aws4auth
-    #   - https://github.com/cisagov/mongo-db-from-config/tarball/develop
+      - https://github.com/cisagov/mongo-db-from-config/tarball/develop
+
+- name: Install pip3 dependencies required by the extract scripts
+  pip:
+    executable: pip3
+    chdir: /var/local/cyhy/feeds
+    requirements: requirements.txt
