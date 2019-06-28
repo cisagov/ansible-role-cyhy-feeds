@@ -49,7 +49,7 @@
 
 - name: Install pip3 dependencies required by the extract scripts
   pip:
-    executable: pip-3.5
+    executable: pip3
     name:
       - boto3
       - python-gnupg
