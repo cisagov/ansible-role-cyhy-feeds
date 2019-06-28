@@ -11,7 +11,7 @@
 
 - name: Download and untar the cyhy-feeds tarball
   unarchive:
-    src: "https://api.github.com/repos/cisagov/cyhy-feeds/tarball/update_to_pass_bandit_testing"
+    src: "https://api.github.com/repos/cisagov/cyhy-feeds/tarball/python3_update"
     dest: /var/local/cyhy/feeds
     remote_src: yes
     extra_opts:
