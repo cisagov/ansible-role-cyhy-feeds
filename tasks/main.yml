@@ -41,7 +41,7 @@
 # This is necessary because the version of pip being used does not support
 # PEP 508 style url version pinning which is what is being used in setup.py
 # for the cyhy-feeds project.
-- name: Install pip dependency mongo-db-from-config dependency through url
+- name: Install pip dependency mongo-db-from-config through url
   pip:
     name:
       - https://github.com/cisagov/mongo-db-from-config/tarball/develop
