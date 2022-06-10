@@ -45,8 +45,7 @@
 # for the cyhy-feeds project.
 - name: Install pip dependency mongo-db-from-config through url
   ansible.builtin.pip:
-    name:
-      - https://github.com/cisagov/mongo-db-from-config/tarball/develop
+    name: https://github.com/cisagov/mongo-db-from-config/tarball/develop
 
 - name: Install other pip dependencies through requirements.txt
   ansible.builtin.pip:
