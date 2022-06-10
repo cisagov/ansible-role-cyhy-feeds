@@ -15,28 +15,20 @@ galaxy_info:
   min_ansible_version: 2.10
   namespace: cisagov
   platforms:
-    # - name: Amazon
-    #   versions:
-    #     - 2
+    # cyhy-feeds is still Python 2, and with distributions ending
+    # support for Python 2 we can only support a limited number of
+    # platforms.
     - name: Debian
       versions:
         - stretch
-    #     - buster
-    #     - bullseye
-    #     # Kali linux isn't an option here, but it is based on
-    #     # Debian Testing:
-    #     # https://www.kali.org/docs/policy/kali-linux-relationship-with-debian
-    #     - bookworm
-    # - name: Fedora
-    #   versions:
-    #     - 34
-    #     - 35
-    # - name: Ubuntu
-    #   versions:
-    #     - bionic
-    #     - focal
+        - buster
+    - name: Ubuntu
+      versions:
+        - bionic
   role_name: cyhy_feeds
 
 dependencies:
   - name: pip
     src: https://github.com/cisagov/ansible-role-pip
+    vars:
+      install_pip2: true
