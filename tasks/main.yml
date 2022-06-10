@@ -6,6 +6,7 @@
 #
 - name: Create the /var/local/cyhy/feeds directory
   file:
+    mode: 0755
     path: /var/local/cyhy/feeds
     state: directory
 
@@ -19,6 +20,7 @@
 
 - name: Create the /var/cyhy/scripts/cyhy-feeds/cyhy_extracts directory
   file:
+    mode: 0755
     path: /var/cyhy/scripts/cyhy-feeds/cyhy_extracts
     state: directory
 
