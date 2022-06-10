@@ -5,12 +5,13 @@
 # Grab the cyhy-feeds code
 #
 - name: Create the /var/local/cyhy/feeds directory
-  file:
+  ansible.builtin.file:
+    mode: 0755
     path: /var/local/cyhy/feeds
     state: directory
 
 - name: Download and untar the cyhy-feeds tarball
-  unarchive:
+  ansible.builtin.unarchive:
     src: "https://api.github.com/repos/cisagov/cyhy-feeds/tarball/develop"
     dest: /var/local/cyhy/feeds
     remote_src: yes
@@ -18,12 +19,13 @@
       - "--strip-components=1"
 
 - name: Create the /var/cyhy/scripts/cyhy-feeds/cyhy_extracts directory
-  file:
+  ansible.builtin.file:
+    mode: 0755
     path: /var/cyhy/scripts/cyhy-feeds/cyhy_extracts
     state: directory
 
 - name: Copy the extract scripts
-  copy:
+  ansible.builtin.copy:
     src: "/var/local/cyhy/feeds/aws_jobs/{{ item }}"
     dest: "/var/cyhy/scripts/cyhy-feeds/{{ item }}"
     mode: 0755
@@ -33,7 +35,7 @@
     - dmarc.py
 
 - name: Install dependencies required by the extract scripts
-  package:
+  ansible.builtin.package:
     name:
       - gnupg2
       - unzip
@@ -42,11 +44,10 @@
 # PEP 508 style url version pinning which is what is being used in setup.py
 # for the cyhy-feeds project.
 - name: Install pip dependency mongo-db-from-config through url
-  pip:
-    name:
-      - https://github.com/cisagov/mongo-db-from-config/tarball/develop
+  ansible.builtin.pip:
+    name: https://github.com/cisagov/mongo-db-from-config/tarball/develop
 
 - name: Install other pip dependencies through requirements.txt
-  pip:
+  ansible.builtin.pip:
     chdir: /var/local/cyhy/feeds
     requirements: requirements.txt

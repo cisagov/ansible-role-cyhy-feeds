@@ -1,8 +1,10 @@
 """Module containing the tests for the default scenario."""
 
+# Standard Python Libraries
 import os
-import pytest
 
+# Third-Party Libraries
+import pytest
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
@@ -21,7 +23,7 @@ def test_packages(host, pkg):
 )
 def test_pip_packages(host, pkg):
     """Test that the pip packages were installed."""
-    assert pkg in host.pip_package.get_packages()
+    assert pkg in host.pip.get_packages()
 
 
 @pytest.mark.parametrize(
