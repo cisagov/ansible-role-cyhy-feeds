@@ -1,6 +1,6 @@
 # ansible-role-cyhy-feeds #
 
-[![Build Status](https://travis-ci.com/cisagov/ansible-role-cyhy-feeds.svg?branch=develop)](https://travis-ci.com/cisagov/ansible-role-cyhy-feeds)
+[![GitHub Build Status](https://github.com/cisagov/ansible-role-cyhy-feeds/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-cyhy-feeds/actions)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/ansible-role-cyhy-feeds.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-cyhy-feeds/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/ansible-role-cyhy-feeds.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-cyhy-feeds/context:python)
 
@@ -14,6 +14,13 @@ None.
 ## Role Variables ##
 
 None.
+
+<!--
+| Variable | Description | Default | Required |
+|----------|-------------|---------|----------|
+| optional_variable | Describe its purpose. | `default_value` | No |
+| required_variable | Describe its purpose. | n/a | Yes |
+-->
 
 ## Dependencies ##
 
@@ -33,7 +40,7 @@ Here's how to use it in a playbook:
 
 ## Contributing ##
 
-We welcome contributions!  Please see [here](CONTRIBUTING.md) for
+We welcome contributions!  Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for
 details.
 
 ## License ##
