@@ -46,7 +46,9 @@
 - name: Install pip dependency mongo-db-from-config through url
   ansible.builtin.pip:
     executable: /usr/bin/pip2
-    name: https://github.com/cisagov/mongo-db-from-config/tarball/develop
+    # This is the last commit before the cisagov/mongo-db-from-config project
+    # became Python 3 only
+    name: https://github.com/cisagov/mongo-db-from-config/tarball/021bb2ceae01b918f863592269899185f17ac2f4
 
 - name: Install other pip dependencies through requirements.txt
   ansible.builtin.pip:
