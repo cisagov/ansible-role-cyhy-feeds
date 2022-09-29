@@ -1,9 +1,7 @@
 ---
 - name: pip
   src: https://github.com/cisagov/ansible-role-pip
-  version: improvement/control-installation-of-pip2-via-role-var
 - name: python
   src: https://github.com/cisagov/ansible-role-python
-  version: improvement/control-installation-of-python2-via-role-var
 - name: upgrade
   src: https://github.com/cisagov/ansible-role-upgrade
