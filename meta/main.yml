@@ -32,3 +32,7 @@ dependencies:
     src: https://github.com/cisagov/ansible-role-pip
     vars:
       install_pip2: true
+  - name: python
+    src: https://github.com/cisagov/ansible-role-python
+    vars:
+      install_python2: true
