@@ -1,8 +1,7 @@
 # ansible-role-cyhy-feeds #
 
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-cyhy-feeds/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-cyhy-feeds/actions)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/ansible-role-cyhy-feeds.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-cyhy-feeds/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/ansible-role-cyhy-feeds.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-cyhy-feeds/context:python)
+[![CodeQL](https://github.com/cisagov/ansible-role-cyhy-feeds/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-cyhy-feeds/actions/workflows/codeql-analysis.yml)
 
 An Ansible role for installing
 [cisagov/cyhy-feeds](https://github.com/cisagov/cyhy-feeds).
@@ -24,7 +23,8 @@ None.
 
 ## Dependencies ##
 
-None.
+- [cisagov/ansible-role-pip](https://github.com/cisagov/ansible-role-pip)
+- [cisagov/ansible-role-python](https://github.com/cisagov/ansible-role-python)
 
 ## Example Playbook ##
 
@@ -34,8 +34,10 @@ Here's how to use it in a playbook:
 - hosts: all
   become: yes
   become_method: sudo
-  roles:
-    - cyhy_feeds
+  tasks:
+    - name: Install cyhy-feeds
+      ansible.builtin.include_role:
+        name: cyhy_feeds
 ```
 
 ## Contributing ##

@@ -12,7 +12,7 @@ galaxy_info:
   # OS family.  This simplifies a lot of things for roles that support
   # Kali Linux, so it makes sense to force the installation of Ansible
   # 2.10 or newer.
-  min_ansible_version: 2.10
+  min_ansible_version: "2.10"
   namespace: cisagov
   platforms:
     # cyhy-feeds is still Python 2, and with distributions ending
@@ -32,3 +32,7 @@ dependencies:
     src: https://github.com/cisagov/ansible-role-pip
     vars:
       install_pip2: true
+  - name: python
+    src: https://github.com/cisagov/ansible-role-python
+    vars:
+      install_python2: true
