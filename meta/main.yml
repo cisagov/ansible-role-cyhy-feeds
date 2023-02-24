@@ -1,8 +1,17 @@
 ---
+dependencies:
+  - name: pip
+    src: https://github.com/cisagov/ansible-role-pip
+    vars:
+      install_pip2: true
+  - name: python
+    src: https://github.com/cisagov/ansible-role-python
+    vars:
+      install_python2: true
 galaxy_info:
   author: Shane Frasier
-  description: Install cisagov/cyhy-feeds.
   company: CISA Cyber Assessments
+  description: Install cisagov/cyhy-feeds.
   galaxy_tags:
     - cyhy
     - feeds
@@ -26,13 +35,3 @@ galaxy_info:
       versions:
         - bionic
   role_name: cyhy_feeds
-
-dependencies:
-  - name: pip
-    src: https://github.com/cisagov/ansible-role-pip
-    vars:
-      install_pip2: true
-  - name: python
-    src: https://github.com/cisagov/ansible-role-python
-    vars:
-      install_python2: true
