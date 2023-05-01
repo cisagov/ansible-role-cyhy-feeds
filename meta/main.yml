@@ -2,12 +2,8 @@
 dependencies:
   - name: pip
     src: https://github.com/cisagov/ansible-role-pip
-    vars:
-      install_pip2: true
   - name: python
     src: https://github.com/cisagov/ansible-role-python
-    vars:
-      install_python2: true
 galaxy_info:
   author: Shane Frasier
   company: CISA Cyber Assessments
@@ -24,9 +20,6 @@ galaxy_info:
   min_ansible_version: "2.10"
   namespace: cisagov
   platforms:
-    # cyhy-feeds is still Python 2, and with distributions ending
-    # support for Python 2 we can only support a limited number of
-    # platforms.
     - name: Debian
       versions:
         - buster
