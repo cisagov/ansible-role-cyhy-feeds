@@ -2,12 +2,8 @@
 dependencies:
   - name: pip
     src: https://github.com/cisagov/ansible-role-pip
-    vars:
-      install_pip2: true
   - name: python
     src: https://github.com/cisagov/ansible-role-python
-    vars:
-      install_python2: true
 galaxy_info:
   author: Shane Frasier
   company: CISA Cyber Assessments
@@ -24,13 +20,26 @@ galaxy_info:
   min_ansible_version: "2.10"
   namespace: cisagov
   platforms:
-    # cyhy-feeds is still Python 2, and with distributions ending
-    # support for Python 2 we can only support a limited number of
-    # platforms.
+    # Amazon Linux 2023 has a gnupg2-minimal package installed by default which
+    # creates a conflict when trying to install the full package.
+    # - name: Amazon Linux 2023
+    #   versions:
+    #     - any
     - name: Debian
       versions:
         - buster
+        - bullseye
+        - bookworm
+    - name: Fedora
+      versions:
+        - "36"
+        - "37"
+    - name: Kali
+      versions:
+        - "2023"
     - name: Ubuntu
       versions:
         - bionic
+        - focal
+        - jammy
   role_name: cyhy_feeds

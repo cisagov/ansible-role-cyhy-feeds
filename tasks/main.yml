@@ -40,18 +40,25 @@
       - gnupg2
       - unzip
 
-# This is necessary because the version of pip being used does not support
-# PEP 508 style url version pinning which is what is being used in setup.py
-# for the cyhy-feeds project.
+# This is necessary because the version of pip3 available on Ubuntu Bionic does
+# not support PEP 508 style url version pinning which is what is being used in
+# setup.py for the cyhy-feeds project.
 - name: Install pip dependency mongo-db-from-config through url
   ansible.builtin.pip:
-    executable: /usr/bin/pip2
-    # This is the last commit before the cisagov/mongo-db-from-config project
-    # became Python 3 only
-    name: https://github.com/cisagov/mongo-db-from-config/tarball/021bb2ceae01b918f863592269899185f17ac2f4
+    executable: pip3
+    name: https://github.com/cisagov/mongo-db-from-config/tarball/develop
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_release == "bionic"
 
 - name: Install other pip dependencies through requirements.txt
   ansible.builtin.pip:
     chdir: /var/local/cyhy/feeds
-    executable: /usr/bin/pip2
+    executable: pip3
+    # The extra argument is necessary on Debian 12, which correctly
+    # recognizes that the local Python is externally managed
+    # (i.e. managed via the system package manager and not by pip).
+    # The extra argument is understood by pip on Debian 12 and Kali
+    # systems, but not others.
+    extra_args: "{{ (ansible_distribution == 'Kali' or (ansible_distribution == 'Debian' and ansible_distribution_release == 'bookworm')) | ternary('--break-system-packages', omit) }}"
     requirements: requirements.txt
