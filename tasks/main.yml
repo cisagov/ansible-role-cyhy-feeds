@@ -6,7 +6,9 @@
 #
 - name: Create the /var/local/cyhy/feeds directory
   ansible.builtin.file:
+    group: "{{ file_owner_group | default(omit) }}"
     mode: 0755
+    owner: "{{ file_owner_username | default(omit) }}"
     path: /var/local/cyhy/feeds
     state: directory
 
@@ -20,14 +22,18 @@
 
 - name: Create the /var/cyhy/scripts/cyhy-feeds/cyhy_extracts directory
   ansible.builtin.file:
+    group: "{{ file_owner_group | default(omit) }}"
     mode: 0755
+    owner: "{{ file_owner_username | default(omit) }}"
     path: /var/cyhy/scripts/cyhy-feeds/cyhy_extracts
     state: directory
 
 - name: Copy the extract scripts
   ansible.builtin.copy:
     dest: /var/cyhy/scripts/cyhy-feeds/{{ item }}
+    group: "{{ file_owner_group | default(omit) }}"
     mode: 0755
+    owner: "{{ file_owner_username | default(omit) }}"
     remote_src: yes
     src: /var/local/cyhy/feeds/aws_jobs/{{ item }}
   loop:
