@@ -16,7 +16,7 @@
     extra_opts:
       - "--strip-components=1"
     remote_src: yes
-    src: "https://api.github.com/repos/cisagov/cyhy-feeds/tarball/develop"
+    src: https://api.github.com/repos/cisagov/cyhy-feeds/tarball/develop
 
 - name: Create the /var/cyhy/scripts/cyhy-feeds/cyhy_extracts directory
   ansible.builtin.file:
@@ -26,10 +26,10 @@
 
 - name: Copy the extract scripts
   ansible.builtin.copy:
-    dest: "/var/cyhy/scripts/cyhy-feeds/{{ item }}"
+    dest: /var/cyhy/scripts/cyhy-feeds/{{ item }}
     mode: 0755
     remote_src: yes
-    src: "/var/local/cyhy/feeds/aws_jobs/{{ item }}"
+    src: /var/local/cyhy/feeds/aws_jobs/{{ item }}
   loop:
     - cyhy-data-extract.py
     - dmarc.py
