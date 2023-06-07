@@ -17,6 +17,8 @@
     dest: /var/local/cyhy/feeds
     extra_opts:
       - "--strip-components=1"
+    group: "{{ file_owner_group | default(omit) }}"
+    owner: "{{ file_owner_username | default(omit) }}"
     remote_src: yes
     src: https://api.github.com/repos/cisagov/cyhy-feeds/tarball/develop
 
