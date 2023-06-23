@@ -46,17 +46,6 @@
       - gnupg2
       - unzip
 
-# This is necessary because the version of pip3 available on Ubuntu Bionic does
-# not support PEP 508 style url version pinning which is what is being used in
-# setup.py for the cyhy-feeds project.
-- name: Install pip dependency mongo-db-from-config through url
-  ansible.builtin.pip:
-    executable: pip3
-    name: https://github.com/cisagov/mongo-db-from-config/tarball/develop
-  when:
-    - ansible_distribution == "Ubuntu"
-    - ansible_distribution_release == "bionic"
-
 - name: Install other pip dependencies through requirements.txt
   ansible.builtin.pip:
     chdir: /var/local/cyhy/feeds
