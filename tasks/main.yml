@@ -1,14 +1,12 @@
 ---
-# tasks file for cyhy_feeds
-
 #
 # Grab the cyhy-feeds code
 #
 - name: Create the /var/local/cyhy/feeds directory
   ansible.builtin.file:
-    group: "{{ file_owner_group | default(omit) }}"
+    group: "{{ cyhy_feeds_file_owner_group | default(omit) }}"
     mode: 0755
-    owner: "{{ file_owner_username | default(omit) }}"
+    owner: "{{ cyhy_feeds_file_owner_username | default(omit) }}"
     path: /var/local/cyhy/feeds
     state: directory
 
@@ -17,25 +15,25 @@
     dest: /var/local/cyhy/feeds
     extra_opts:
       - "--strip-components=1"
-    group: "{{ file_owner_group | default(omit) }}"
-    owner: "{{ file_owner_username | default(omit) }}"
+    group: "{{ cyhy_feeds_file_owner_group | default(omit) }}"
+    owner: "{{ cyhy_feeds_file_owner_username | default(omit) }}"
     remote_src: yes
     src: https://api.github.com/repos/cisagov/cyhy-feeds/tarball/develop
 
 - name: Create the /var/cyhy/scripts/cyhy-feeds/cyhy_extracts directory
   ansible.builtin.file:
-    group: "{{ file_owner_group | default(omit) }}"
+    group: "{{ cyhy_feeds_file_owner_group | default(omit) }}"
     mode: 0755
-    owner: "{{ file_owner_username | default(omit) }}"
+    owner: "{{ cyhy_feeds_file_owner_username | default(omit) }}"
     path: /var/cyhy/scripts/cyhy-feeds/cyhy_extracts
     state: directory
 
 - name: Copy the extract scripts
   ansible.builtin.copy:
     dest: /var/cyhy/scripts/cyhy-feeds/{{ item }}
-    group: "{{ file_owner_group | default(omit) }}"
+    group: "{{ cyhy_feeds_file_owner_group | default(omit) }}"
     mode: 0755
-    owner: "{{ file_owner_username | default(omit) }}"
+    owner: "{{ cyhy_feeds_file_owner_username | default(omit) }}"
     remote_src: yes
     src: /var/local/cyhy/feeds/aws_jobs/{{ item }}
   loop:
