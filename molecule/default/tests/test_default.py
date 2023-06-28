@@ -18,10 +18,7 @@ def test_packages(host, pkg):
     assert host.package(pkg).is_installed
 
 
-# We only have an explicit check for the mongo-db-from-config package because
-# it is installed explicitly for Ubuntu Bionic. If support for Ubuntu Bionic is
-# dropped then we can also drop that package from this list.
-@pytest.mark.parametrize("pkg", ["cyhy-feeds", "mongo-db-from-config"])
+@pytest.mark.parametrize("pkg", ["cyhy-feeds"])
 def test_pip_packages(host, pkg):
     """Test that the pip packages were installed."""
     assert pkg in host.pip.get_packages(pip_path="pip3")

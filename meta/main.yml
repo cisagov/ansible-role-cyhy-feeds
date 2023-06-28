@@ -22,9 +22,9 @@ galaxy_info:
   platforms:
     # Amazon Linux 2023 has a gnupg2-minimal package installed by default which
     # creates a conflict when trying to install the full package.
-    # - name: Amazon Linux 2023
+    # - name: Amazon Linux
     #   versions:
-    #     - any
+    #     - "2023"
     - name: Debian
       versions:
         - buster
@@ -32,14 +32,13 @@ galaxy_info:
         - bookworm
     - name: Fedora
       versions:
-        - "36"
         - "37"
+        - "38"
     - name: Kali
       versions:
         - "2023"
     - name: Ubuntu
       versions:
-        - bionic
         - focal
         - jammy
   role_name: cyhy_feeds
