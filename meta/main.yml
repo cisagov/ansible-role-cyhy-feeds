@@ -1,4 +1,9 @@
 ---
+# Note that dependencies listed here are automatically installed
+# before this role.  Role variables for any roles listed here can be
+# assigned static variables.
+#
+# See also cisagov/skeleton-ansible-role#153.
 dependencies:
   - name: pip
     src: https://github.com/cisagov/ansible-role-pip
@@ -42,3 +47,4 @@ galaxy_info:
         - focal
         - jammy
   role_name: cyhy_feeds
+  standalone: true
