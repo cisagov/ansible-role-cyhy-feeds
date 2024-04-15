@@ -17,7 +17,7 @@
       - "--strip-components=1"
     group: "{{ cyhy_feeds_file_owner_group | default(omit) }}"
     owner: "{{ cyhy_feeds_file_owner_username | default(omit) }}"
-    remote_src: yes
+    remote_src: true
     src: https://api.github.com/repos/cisagov/cyhy-feeds/tarball/develop
 
 - name: Create the /var/cyhy/scripts/cyhy-feeds/cyhy_extracts directory
@@ -34,7 +34,7 @@
     group: "{{ cyhy_feeds_file_owner_group | default(omit) }}"
     mode: 0755
     owner: "{{ cyhy_feeds_file_owner_username | default(omit) }}"
-    remote_src: yes
+    remote_src: true
     src: /var/local/cyhy/feeds/aws_jobs/{{ item }}
   loop:
     - cyhy-data-extract.py
