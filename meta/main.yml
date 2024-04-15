@@ -25,8 +25,9 @@ galaxy_info:
   min_ansible_version: "2.10"
   namespace: cisagov
   platforms:
-    # Amazon Linux 2023 has a gnupg2-minimal package installed by default which
-    # creates a conflict when trying to install the full package.
+    # Amazon Linux 2023 has a gnupg2-minimal package installed by
+    # default which creates a conflict when trying to install the full
+    # package.
     # - name: Amazon Linux
     #   versions:
     #     - "2023"
@@ -35,10 +36,11 @@ galaxy_info:
         - buster
         - bullseye
         - bookworm
+        - trixie
     - name: Fedora
       versions:
-        - "37"
         - "38"
+        - "39"
     - name: Kali
       versions:
         - "2023"
