@@ -181,7 +181,10 @@ jobs:
           - amd64
           - arm64
         platform:
-          - amazonlinux2023-systemd
+          # Amazon Linux 2023 has a gnupg2-minimal package installed
+          # by default which creates a conflict when trying to install
+          # the full package.
+          # - amazonlinux2023-systemd
           - debian10-systemd
           - debian11-systemd
           - debian12-systemd
