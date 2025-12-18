@@ -47,7 +47,6 @@ galaxy_info:
         - "2023"
     - name: Ubuntu
       versions:
-        - jammy
         - noble
   role_name: cyhy_feeds
   standalone: true
