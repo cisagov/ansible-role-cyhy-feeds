@@ -40,14 +40,13 @@ galaxy_info:
         - forky
     - name: Fedora
       versions:
-        - "41"
         - "42"
+        - "43"
     - name: Kali
       versions:
         - "2023"
     - name: Ubuntu
       versions:
-        - jammy
         - noble
   role_name: cyhy_feeds
   standalone: true
