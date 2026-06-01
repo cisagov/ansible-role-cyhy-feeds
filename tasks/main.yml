@@ -56,6 +56,6 @@
     extra_args: >-
       {{ (ansible_distribution in ['Kali']
       or (ansible_distribution in ['Debian', 'Ubuntu']
-      and ansible_distribution_release in ['bookworm', 'noble', 'trixie', 'forky'])) |
+      and ansible_distribution_release not in ['buster', 'bullseye'])) |
       ternary('--break-system-packages', omit) }}
     requirements: requirements.txt
