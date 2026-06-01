@@ -48,5 +48,6 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - noble
+        - resolute
   role_name: cyhy_feeds
   standalone: true
