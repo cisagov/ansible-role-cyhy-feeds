@@ -50,16 +50,24 @@
   ansible.builtin.pip:
     chdir: /var/local/cyhy/feeds
     executable: pip3
-    # The extra argument is necessary on modern platforms, which
-    # correctly recognize that the local Python is externally managed
-    # (i.e. managed via the system package manager and not by pip).
+    # The extra --break-system-packages argument is necessary on modern
+    # platforms, which correctly recognize that the local Python is externally
+    # managed (i.e. managed via the system package manager and not by pip).
     #
     # For Debian Buster, we upgrade pip3 in ansible-role-pip to get a version
-    # new enough to support pyproject.toml.  In that case, we are able to use
-    # the --break-system-packages argument as we do for more modern platforms.
+    # new enough to support pyproject.toml. In that case, we add
+    # --ignore-installed to work around dependency install behavior on Buster.
     extra_args: >-
-      {{ (ansible_distribution in ['Kali']
-      or (ansible_distribution in ['Debian', 'Ubuntu']
-      and ansible_distribution_release not in ['bullseye'])) |
-      ternary('--break-system-packages', omit) }}
+      {{
+        '--break-system-packages --ignore-installed'
+        if (ansible_distribution == 'Debian' and
+            ansible_distribution_release == 'buster')
+        else (
+          '--break-system-packages'
+          if (ansible_distribution in ['Kali']
+              or (ansible_distribution in ['Debian', 'Ubuntu']
+                  and ansible_distribution_release not in ['bullseye']))
+          else omit
+        )
+      }}
     requirements: requirements.txt
