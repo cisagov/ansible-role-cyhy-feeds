@@ -21,6 +21,17 @@ def test_packages(host, pkg):
 @pytest.mark.parametrize("pkg", ["cyhy-feeds"])
 def test_pip_packages(host, pkg):
     """Test that the pip packages were installed."""
+    # Skip pip package assertion on Debian Buster, due to the wonky way we must
+    # install cyhy-feeds on Buster. On Buster, we must use pip's
+    # --ignore-installed option to work around dependency install behavior,
+    # which causes pip to report that the package is not installed even though
+    # it is.  This is ok because the test_files test will still verify that the
+    # expected files are present.
+    distribution = getattr(host.system_info, "distribution", "").lower()
+    codename = getattr(host.system_info, "codename", "").lower()
+    if distribution == "debian" and codename == "buster":
+        pytest.skip("Skipping pip package assertion on Debian Buster")
+
     assert pkg in host.pip.get_packages(pip_path="pip3")
 
 
