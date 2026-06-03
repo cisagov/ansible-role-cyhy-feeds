@@ -12,6 +12,7 @@ roles:
     src: https://github.com/cisagov/ansible-role-debian-archive
   - name: pip
     src: https://github.com/cisagov/ansible-role-pip
+    version: improvement/newer-pip-on-buster
   - name: python
     src: https://github.com/cisagov/ansible-role-python
   - name: upgrade

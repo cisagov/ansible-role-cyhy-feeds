@@ -7,6 +7,7 @@
 dependencies:
   - name: pip
     src: https://github.com/cisagov/ansible-role-pip
+    version: improvement/newer-pip-on-buster
   - name: python
     src: https://github.com/cisagov/ansible-role-python
 galaxy_info:
