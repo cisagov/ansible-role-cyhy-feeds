@@ -57,9 +57,12 @@
     # For Debian Buster, we upgrade pip3 in ansible-role-pip to get a version
     # new enough to support pyproject.toml. In that case, we add
     # --ignore-installed to work around dependency install behavior on Buster.
+    # Without this flag, pip fails due to a previously-installed version of
+    # PyYAML that cannot be uninstalled because it was installed via the package
+    # manager in the base AMI that we use.
     extra_args: >-
       {{
-        '--break-system-packages --ignore-installed'
+        '--ignore-installed'
         if (ansible_distribution == 'Debian' and
             ansible_distribution_release == 'buster')
         else (
