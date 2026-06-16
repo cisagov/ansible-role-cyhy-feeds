@@ -46,6 +46,37 @@
       - gnupg2
       - unzip
 
+# We only need this on Debian Buster, but we want this before the block
+# that follows so we can use it in the `when`.
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+  when:
+    - ansible_distribution == 'Debian'
+    - ansible_distribution_release == 'buster'
+
+- name: Remove python3-yaml system package (Debian Buster)
+  when:
+    - ansible_distribution == 'Debian'
+    - ansible_distribution_release == 'buster'
+    - "'python3-yaml' in ansible_facts.packages"
+  block:
+    - name: Hold the python3-yaml system package to prevent reinstallation
+      ansible.builtin.dpkg_selections:
+        name: python3-yaml
+        selection: hold
+
+    - name: Remove python3-yaml system package
+      ansible.builtin.command:
+        # There are installed packages (aws-cli and cloud-init) that depend on
+        # this system package. We ignore those dependencies since we'll be
+        # installing the Python package in the following step.
+        cmd: dpkg --force-depends --purge python3-yaml
+      changed_when: "'purging' in dpkg_result.stdout or 'purging' in dpkg_result.stderr"
+      failed_when:
+        - dpkg_result.rc != 0
+        - "'is not installed' not in dpkg_result.stderr"
+      register: dpkg_result
+
 - name: Install other pip dependencies through requirements.txt
   ansible.builtin.pip:
     chdir: /var/local/cyhy/feeds
